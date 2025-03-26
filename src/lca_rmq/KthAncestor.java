@@ -13,14 +13,13 @@ public class KthAncestor {
     up = new int[n][LOG];
     depth = new int[n];
 
-    parent[0] = 0;
-    for (int v = 0; v < n; v++) {
-      up[v][0] = parent[v];
-      if (v != 0) {
-        depth[v] = depth[parent[v]] + 1;
+    for (int i = 0; i < n; i++) {
+      up[i][0] = parent[i];
+      if (i != 0) {
+        depth[i] = depth[parent[i]] + 1;
       }
       for (int j = 1; j < LOG; j++) {
-        up[v][j] = up[up[v][j - 1]][j - 1];
+        up[i][j] = up[up[i][j - 1]][j - 1];
       }
     }
   }
@@ -38,10 +37,10 @@ public class KthAncestor {
   }
 
   public static void main(String[] args) {
-    int n = 12;
-    int[] parent = new int[]{0, 0, 1, 0, 1, 0, 5, 4, 7, 8, 9, 7};
+    int n = 3;
+    int[] parent = new int[]{0, 0, 0};
     KthAncestor kthAncestor = new KthAncestor(n, parent);
-    int res = kthAncestor.getKthAncestor(6, 1);
-    System.out.println("Expected: 5\t\tActual: " + res);
+    int res = kthAncestor.getKthAncestor(1,2);
+    System.out.println("Expected: 0\t\tActual: " + res);
   }
 }
